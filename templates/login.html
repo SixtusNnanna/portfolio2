@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 500px; margin: 40px auto; padding: 20px; }
+        input, textarea, button {
+            width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 6px;
+        }
+        button {
+            background: #0066ff; color: white; font-weight: bold; cursor: pointer;
+        }
+        button:hover { background: #0055cc; }
+        .error { color: red; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <h1>Login to Your Portfolio</h1>
+
+    <!-- Login form – posts to /token, swaps the whole body on success -->
+    <form 
+        hx-post="/token"
+        hx-target="body"
+        hx-swap="outerHTML"
+        hx-on::after-request="this.reset()">
+        
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="Enter your username" required>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="Enter your password" required>
+
+        <br><br>
+        <button type="submit">Log In</button>
+    </form>
+
+    <!-- Optional: show error if login fails -->
+    <div id="login-error" class="error"></div>
+
+</body>
+</html>

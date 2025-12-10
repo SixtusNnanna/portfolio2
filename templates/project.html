@@ -1,0 +1,14 @@
+
+<ul>
+    {% for project in projects %}
+    <li> 
+        <img src="{{project.image_url}}" alt="project id: {{project.id}}">
+        <p>Project name{{project.name}}</p>
+        <p>{{ project.description}}</p>
+        <p>visit project @ {{project.url}}</p>
+        <p>Github Repo: {{project.github_repo}}</p>
+
+    </li>
+    {% endfor %}
+
+</ul>
