@@ -3,7 +3,19 @@ from sqlalchemy.orm import declarative_base
 
 from app.database.config import DATABASE_URL
 
-engine = create_async_engine(DATABASE_URL, echo=True, pool_pre_ping=True)
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL is not set")
+
+
+engine = create_async_engine(
+    DATABASE_URL.replace(
+        "postgresql://", "postgresql+asyncpg://"
+    ),
+    pool_pre_ping=True,
+    connect_args={
+        "ssl": "require"
+    },
+)
 
 AsyncSessionLocal = async_sessionmaker(
     engine, class_=AsyncSession,
