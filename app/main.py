@@ -11,14 +11,14 @@ app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+
 @app.on_event("startup")
 async def startup_event():
     try:
         async with engine.begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
     except Exception as e:
-        print("DB connection failed:", e))
-
+        print("DB connection failed:", e)
 
 
 app.include_router(router=project_router, prefix="", tags=["projects"])
