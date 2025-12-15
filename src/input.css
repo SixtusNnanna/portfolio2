@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* Optional: Customize theme directly here if needed (no separate config file) */
+@theme {
+  --color-primary: oklch(0.5 0.2 250);
+  /* Add more customizations like fonts, breakpoints, etc. */
+}

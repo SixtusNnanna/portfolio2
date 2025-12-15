@@ -3,35 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js" integrity="sha384-/TgkGk7p307TH7EXJDuUlgG3Ce1UVolAOFopFekQkkXihi5u/6OCvVKyz1W+idaz" crossorigin="anonymous"></script>
-     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
-    <title>My individaul project</title>
+    <title>My Portfolio</title>
+    <script src="https://unpkg.com/htmx.org@2.0.0/dist/htmx.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <p> Welcome to html</p>
-    <form hx-post="/projects" hx-target="#projects" hx-swap="innerHTML" hx-on:htmx:after-request="this.reset()" enctype="multipart/form-data">
-        <label for="name">Project Name</label>
-        <input type="text" name="name">
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
 
-        <label for="description">Description</label>
-        <textarea name="description" rows="5"></textarea>
-        <label for="image">Project Image</label>
-        <input type="file" name="image" accept="image/*">
-        <label for="url">Project URL</label>
-        <input type="text" name="url">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white py-6">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl font-bold">Sixtus Omeje</h1>
+            <p class="text-xl">Python Developer</p>
+        </div>
+    </header>
 
-        <label for="github_repo">Project Repo</label>
-        <input type="text"  name="github_repo">
-    <br>
-    <button> Add project</button>
-        
-    </form>
+    <!-- Navigation -->
+    <nav class="bg-indigo-700 text-white py-4 sticky top-0 z-10">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="text-lg font-bold">Portfolio</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="hover:underline">About</a>
+                <a href="#skills" class="hover:underline">Skills</a>
+                <a href="#projects" class="hover:underline">Projects</a>
+                <a href="#contact" class="hover:underline">Contact</a>
+            </div>
+            <button id="menu-btn" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="menu" class="hidden md:hidden flex flex-col space-y-4 bg-indigo-600 px-4 py-4">
+            <a href="#about" class="hover:underline">About</a>
+            <a href="#skills" class="hover:underline">Skills</a>
+            <a href="#projects" class="hover:underline">Projects</a>
+            <a href="#contact" class="hover:underline">Contact</a>
+        </div>
+    </nav>
 
-    <ul id="projects" hx-get="/projects" hx-trigger="load" hx-swap="innerHTML">
+    <!-- Breadcrumbs (visible on smaller screens) -->
+    <div id="breadcrumbs" class="bg-gray-200 py-2 text-sm md:hidden">
+        <div class="container mx-auto px-4">
+            <a href="#" class="text-blue-600 hover:underline">Home</a> / <span class="text-gray-600">Current Section</span>
+        </div>
+    </div>
 
-    </ul>
+    <!-- About Section -->
+    <section id="about" class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-4 text-indigo-600">About Me</h2>
+            <p class="text-lg mb-4">
+                Hello! I'm Sixtus Omeje, a result driven python developer with extensive experience in designing and implementing scalable high performance application.
+            </p>
+            <p class="text-lg">
+                In my free time, I enjoy hiking, reading tech blogs, and contributing to open-source projects.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-12 bg-purple-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-4 text-purple-600">Skills</h2>
+            <ul class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <li class="bg-white p-4 rounded shadow">Python</li>
+                <li class="bg-white p-4 rounded shadow">FastAPI</li>
+                <li class="bg-white p-4 rounded shadow">SQL</li>
+                <li class="bg-white p-4 rounded shadow">NOSQL</li>
+                <li class="bg-white p-4 rounded shadow">Tailwind CSS</li>
+                <li class="bg-white p-4 rounded shadow">HTMX</li>
+                <li class="bg-white p-4 rounded shadow">Git</li>
+                <li class="bg-white p-4 rounded shadow">PyQT</li>
+                <li class="bg-white p-4 rounded shadow">Alembic</li>
+                <li class="bg-white p-4 rounded shadow">SQLAlchemy</li>
     
+            </ul>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-12 bg-pink-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-4 text-pink-600">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" hx-get="/projects" hx-trigger="load" hx-swap="innerHTML">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 bg-purple-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-4 text-purple-600">Contact Me</h2>
+            <form class="max-w-lg mx-auto">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700">Name</label>
+                    <input type="text" id="name" class="w-full p-2 border rounded">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700">Email</label>
+                    <input type="email" id="email" class="w-full p-2 border rounded">
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="block text-gray-700">Message</label>
+                    <textarea id="message" class="w-full p-2 border rounded" rows="4"></textarea>
+                </div>
+                <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white py-4">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Sixtus. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-2">
+                <a href="#" class="hover:underline">LinkedIn</a>
+                <a href="#" class="hover:underline">GitHub</a>
+                <a href="#" class="hover:underline">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('menu-btn');
+        const menu = document.getElementById('menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Simple breadcrumb update based on hash (for demo, static here; can expand with JS for dynamic)
+        window.addEventListener('hashchange', () => {
+            const section = location.hash.replace('#', '') || 'Home';
+            document.querySelector('#breadcrumbs span').textContent = section.charAt(0).toUpperCase() + section.slice(1);
+        });
+        // Initial set
+        const initialSection = location.hash.replace('#', '') || 'Home';
+        document.querySelector('#breadcrumbs span').textContent = initialSection.charAt(0).toUpperCase() + initialSection.slice(1);
+    </script>
+
 </body>
 </html>
-
-

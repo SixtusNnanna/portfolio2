@@ -1,14 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@2.0.0/dist/htmx.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+<body>
+    {% for project in projects%}
+    <div class="bg-white rounded shadow overflow-hidden">
 
-<ul>
-    {% for project in projects %}
-    <li> 
-        <img src="{{project.image_url}}" alt="project id: {{project.id}}">
-        <p>Project name{{project.name}}</p>
-        <p>{{ project.description}}</p>
-        <p>visit project @ {{project.url}}</p>
-        <p>Github Repo: {{project.github_repo}}</p>
-
-    </li>
+        <img src="{{project.image_url}}" alt="Project 1" class="w-full">
+            <div class="p-4">
+                <h3 class="text-xl font-bold mb-2">{{ project.name }}</h3>
+                <p class="text-gray-700">{{ project.description}}</p>
+                    {% if project.url %}
+                    <a href="{{project.url}}" class="text-blue-600 hover:underline mt-2 inline-block">View Project</a>
+                    {% else %}
+                    <a href="{{project.github_repo}}" class="text-blue-600 hover:underline mt-2 inline-block">View Project</a>
+                    {% endif%}
+ 
+            </div>
+    </div>
     {% endfor %}
+</body>
+</html>
 
-</ul>
+            
