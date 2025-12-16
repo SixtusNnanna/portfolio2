@@ -19,6 +19,8 @@ async def startup_event():
             await conn.run_sync(Base.metadata.create_all)
     except Exception as e:
         print("DB connection failed:", e)
+    finally:
+        await engine.dispose()
 
 
 app.include_router(router=project_router, prefix="", tags=["projects"])
