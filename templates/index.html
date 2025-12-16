@@ -44,7 +44,7 @@
     <!-- Breadcrumbs (visible on smaller screens) -->
     <div id="breadcrumbs" class="bg-gray-200 py-2 text-sm md:hidden">
         <div class="container mx-auto px-4">
-            <a href="#" class="text-blue-600 hover:underline">Home</a> / <span class="text-gray-600">Current Section</span>
+            <a href="#" class="text-blue-600 hover:underline"></a> <span class="text-gray-600">Current Section</span>
         </div>
     </div>
 
@@ -134,11 +134,11 @@
 
         // Simple breadcrumb update based on hash (for demo, static here; can expand with JS for dynamic)
         window.addEventListener('hashchange', () => {
-            const section = location.hash.replace('#', '') || 'Home';
+            const section = location.hash.replace('#', '') 
             document.querySelector('#breadcrumbs span').textContent = section.charAt(0).toUpperCase() + section.slice(1);
         });
         // Initial set
-        const initialSection = location.hash.replace('#', '') || 'Home';
+        const initialSection = location.hash.replace('#', '');
         document.querySelector('#breadcrumbs span').textContent = initialSection.charAt(0).toUpperCase() + initialSection.slice(1);
     </script>
 
